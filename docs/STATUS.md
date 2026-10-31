@@ -18,10 +18,11 @@
   - Secret scanning + push protection, Dependabot alerts + security updates: on.
   - CodeQL default setup: `configured`, no languages yet (no code).
   - `main` protection: PR required (0 approvals; solo), enforced for admins, linear history, no force-push/deletion. No required status checks until CI exists (M0b). **Direct pushes to `main` are blocked**: everything goes through a PR.
+  - In this environment, `git push` works from PowerShell but not the Bash tool, which can't authenticate.
   - `gh repo create --public` is blocked by Claude Code's auto-mode classifier. The user runs public-surface actions themselves with `!`.
 
 ## Next steps
-1. Issue 2: user reviews branch `feat/m0a-aspire-host` → commit, push, PR. Note: the health check keys are `self` and `PostgreSql` (names set by Aspire), not `postgres` as first planned.
+1. Issue 2: user squash-merges PR #1 (https://github.com/bduta/murmur/pull/1). Note: the health check keys are `self` and `PostgreSql` (names set by Aspire), not `postgres` as first planned.
    Then continue M0a issues 3–7 (below), one branch + PR per issue.
 2. After issue 2 merges: check that CodeQL default setup has picked up C# (`gh api repos/bduta/murmur/code-scanning/default-setup`). It shows `languages: []` today because there's no code yet.
 3. Before M0b: install Azure CLI + Terraform (still missing as of 2026-10-31). Docker Desktop and GitHub CLI are installed; `gh` is authenticated as `bduta`.
@@ -30,7 +31,7 @@
 | # | Issue | Who | ~h | State |
 |---|---|---|---|---|
 | 1 | Repo bootstrap | Agent, user reviews | 2 | Done (`494bf60`) |
-| 2 | Aspire host: `Murmur.AppHost`, `Murmur.ServiceDefaults`, `Murmur.Api` with `/api/health` (version + DB check); Postgres + Azurite | Agent, user reviews | 3 | Built on `feat/m0a-aspire-host` and checked by running it locally; awaiting user review/commit |
+| 2 | Aspire host: `Murmur.AppHost`, `Murmur.ServiceDefaults`, `Murmur.Api` with `/api/health` (version + DB check); Postgres + Azurite | Agent, user reviews | 3 | PR #1 open (`feat/m0a-aspire-host`); awaiting user merge |
 | 3 | Module skeleton: SharedKernel (`UserId`, `Result`, `IClock`), `IModule` registration, empty `Identity` + `Posts` modules with `.Contracts` | Agent, user reviews | 3 | Todo |
 | 4 | Tests: architecture tests + Testcontainers integration test for `/api/health` (tests first) | Agent, user reviews | 3 | Todo |
 | 5 | Web: Vite + React + TS, Tailwind + shadcn/ui, React Router, TanStack Query, ESLint/Prettier, Vitest, added to Aspire. **User writes the health-status component + its test** (agent tutors) | Mixed | 4 | Todo |

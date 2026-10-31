@@ -1,0 +1,16 @@
+# Normalise line endings in the repo; check out with native endings.
+* text=auto
+
+# Always LF (run in Linux containers / CI)
+*.sh        text eol=lf
+Dockerfile  text eol=lf
+*.tf        text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+
+# Binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.ico  binary

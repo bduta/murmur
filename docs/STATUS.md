@@ -22,12 +22,16 @@
   - `main` protection: PR required (0 approvals; solo), enforced for admins, linear history, no force-push/deletion. No required status checks until CI exists (M0b). **Direct pushes to `main` are blocked**: everything goes through a PR. Merged branches are auto-deleted on the remote.
   - In this environment, `git push` works from PowerShell but not the Bash tool, which can't authenticate.
   - `gh repo create --public` is blocked by Claude Code's auto-mode classifier. The user runs public-surface actions themselves with `!`.
+- **Local run gotchas:**
+  - Run the AppHost with the default (https) profile: `dotnet run --project src/Murmur.AppHost`. The `http` profile fails at startup unless `ASPIRE_ALLOW_UNSECURED_TRANSPORT=true`. The API is at `https://localhost:7080/api/health`.
+  - Killing the AppHost process (instead of Ctrl+C) leaves the `postgres-*`/`storage-*` containers running; `docker stop` them. Data volumes persist.
+  - In Windows PowerShell 5.1, `git commit -F -` with a here-string doesn't work; write the message to a file in the scratchpad and use `git commit -F <file>`.
 - **Milestone files:** `docs/milestones/`, one file per milestone. M0a holds the approved breakdown. M0b–M13 are outlines with **no breakdown yet**.
 - **Issue 3 — module skeleton (in progress, 2026-11-02):** `src/Shared/Murmur.SharedKernel` (`UserId`, `Result`/`Result<T>`/`Error`; base .NET only), `src/Shared/Murmur.BuildingBlocks` (`IModule`), empty `Identity` and `Posts` modules plus `.Contracts` projects, explicit module registration in `Program.cs`, `TimeProvider.System` in DI. **ADR-0028** replaces the planned `IClock` with `TimeProvider`.
 - **Module-boundary design review (grilling session, 2026-11-02):** 12 decisions recorded in **ADR-0029** (shared-code admission rules, cross-module reads, event shape, no cycles, visibility, enforcement). The user approved the resulting changes to issues 3 and 4 in the M0a breakdown.
 
 ## Next steps
-1. Issue 3: user reviews and squash-merges PR #2. Then switch to `main`, pull, and delete the local branch.
+1. Issue 3: first check `gh pr view 2 --json state,mergedAt`. If the user hasn't merged yet, wait for their review and squash-merge (PR #2 has 3 commits: skeleton, status, BuildingBlocks + ADR-0029). Once merged: `git switch main`, `git pull --ff-only`, `git branch -D feat/m0a-module-skeleton` (squash merge, so `-d` refuses), mark issue 3 Done in the milestone file and here.
 2. Issue 4: plan first (wait for approval), then architecture tests for the 7 rules in ADR-0029 §7 (listed in the M0a milestone file) + `/api/health` integration test, tests first. Check the ArchUnitNET licence before adding the package.
 3. Then M0a issues 5–7 (see the M0a milestone file), one branch + PR per issue.
 4. Before M0b: install Azure CLI + Terraform (still missing as of 2026-10-31). Docker Desktop and GitHub CLI are installed; `gh` is authenticated as `bduta`.

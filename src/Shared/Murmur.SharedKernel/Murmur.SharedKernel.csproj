@@ -1,8 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- Kept tiny on purpose (ADR-0020). The ASP.NET Core framework reference is for IModule only. -->
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+  <!-- Kept tiny on purpose: no runtime dependencies beyond the .NET base framework (ADR-0029). -->
 
 </Project>

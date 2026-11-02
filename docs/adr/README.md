@@ -34,3 +34,4 @@ Template: [`0000-template.md`](0000-template.md)
 | [0026](0026-codename-murmur.md) | Internal codename `murmur` | Accepted |
 | [0027](0027-milestone-roadmap.md) | Milestone roadmap and sizing | Accepted |
 | [0028](0028-timeprovider-instead-of-iclock.md) | TimeProvider instead of a custom IClock | Accepted |
+| [0029](0029-module-boundaries.md) | Module boundaries: shared code, cross-module reads, events | Accepted |

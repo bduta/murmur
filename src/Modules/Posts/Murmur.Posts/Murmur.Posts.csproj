@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Murmur.SharedKernel\Murmur.SharedKernel.csproj" />
     <ProjectReference Include="..\Murmur.Posts.Contracts\Murmur.Posts.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Murmur.BuildingBlocks\Murmur.BuildingBlocks.csproj" />
   </ItemGroup>
 
 </Project>

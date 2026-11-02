@@ -1,6 +1,6 @@
 # 0020. Module structure, vertical slices, outbox
 
-- **Status:** Accepted (SharedKernel clock amended by [ADR-0028](0028-timeprovider-instead-of-iclock.md))
+- **Status:** Accepted (clock amended by [ADR-0028](0028-timeprovider-instead-of-iclock.md); shared projects, cross-module reads and events detailed by [ADR-0029](0029-module-boundaries.md))
 - **Date:** 2026-10-29
 
 ## Context
@@ -16,7 +16,8 @@ src/
   Modules/<Name>/
     Murmur.<Name>/             internal implementation
     Murmur.<Name>.Contracts/   public interfaces, DTOs, integration events
-  Shared/Murmur.SharedKernel/  tiny: Result, UserId, IModule, event base types (time: TimeProvider, ADR-0028)
+  Shared/Murmur.SharedKernel/  tiny, base .NET only: Result, UserId, event base types (ADR-0029; time: TimeProvider, ADR-0028)
+  Shared/Murmur.BuildingBlocks/ generic plumbing for modules + host: IModule, later outbox etc. (ADR-0029)
 web/                           React SPA
 infra/                         Terraform
 tests/

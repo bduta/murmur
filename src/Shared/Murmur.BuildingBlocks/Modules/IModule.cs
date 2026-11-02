@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Hosting;
 
-namespace Murmur.SharedKernel.Modules;
+namespace Murmur.BuildingBlocks.Modules;
 
 /// <summary>
 /// Entry point of a module (ADR-0004, ADR-0020). The implementation is the only public type in a module's

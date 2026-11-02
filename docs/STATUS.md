@@ -8,7 +8,7 @@
 **Where we stopped:** issue 3 (module skeleton) is in PR #2 (https://github.com/bduta/murmur/pull/2), waiting for the user to review and squash-merge. Per-milestone plans live in [`milestones/`](milestones/README.md); every milestone after M0a is an outline only.
 
 ## Done
-- Planning session complete: all decisions recorded in [`PLAN.md`](PLAN.md) and ADRs 0001–0028 in [`adr/`](adr/README.md). Treat them as settled.
+- Planning session complete: all decisions recorded in [`PLAN.md`](PLAN.md) and ADRs 0001–0029 in [`adr/`](adr/README.md). Treat them as settled.
 - Codename chosen: `murmur`. Repo lives at `C:\dev\murmur` (deliberately **not** in OneDrive — sync breaks git/node_modules/bin).
 - **Issue 1 — repo bootstrap:** done, `494bf60` on `main` (2026-10-31).
   - `global.json` pins SDK 10.0.403 (`latestFeature`; a .NET 11 RC is also installed and must not be used)
@@ -23,11 +23,12 @@
   - In this environment, `git push` works from PowerShell but not the Bash tool, which can't authenticate.
   - `gh repo create --public` is blocked by Claude Code's auto-mode classifier. The user runs public-surface actions themselves with `!`.
 - **Milestone files:** `docs/milestones/`, one file per milestone. M0a holds the approved breakdown. M0b–M13 are outlines with **no breakdown yet**.
-- **Issue 3 — module skeleton (in progress, 2026-11-02):** `src/Shared/Murmur.SharedKernel` (`UserId`, `Result`/`Result<T>`/`Error`, `IModule`), empty `Identity` and `Posts` modules plus `.Contracts` projects, explicit module registration in `Program.cs`, `TimeProvider.System` in DI. **ADR-0028** replaces the planned `IClock` with `TimeProvider`.
+- **Issue 3 — module skeleton (in progress, 2026-11-02):** `src/Shared/Murmur.SharedKernel` (`UserId`, `Result`/`Result<T>`/`Error`; base .NET only), `src/Shared/Murmur.BuildingBlocks` (`IModule`), empty `Identity` and `Posts` modules plus `.Contracts` projects, explicit module registration in `Program.cs`, `TimeProvider.System` in DI. **ADR-0028** replaces the planned `IClock` with `TimeProvider`.
+- **Module-boundary design review (grilling session, 2026-11-02):** 12 decisions recorded in **ADR-0029** (shared-code admission rules, cross-module reads, event shape, no cycles, visibility, enforcement). The user approved the resulting changes to issues 3 and 4 in the M0a breakdown.
 
 ## Next steps
 1. Issue 3: user reviews and squash-merges PR #2. Then switch to `main`, pull, and delete the local branch.
-2. Issue 4: architecture tests + `/api/health` integration test (tests first). Include: module→module only via `.Contracts`; module implementation types `internal` except the `IModule` class; no `DateTime.UtcNow`/`DateTimeOffset.UtcNow` in modules (ADR-0028).
+2. Issue 4: plan first (wait for approval), then architecture tests for the 7 rules in ADR-0029 §7 (listed in the M0a milestone file) + `/api/health` integration test, tests first. Check the ArchUnitNET licence before adding the package.
 3. Then M0a issues 5–7 (see the M0a milestone file), one branch + PR per issue.
 4. Before M0b: install Azure CLI + Terraform (still missing as of 2026-10-31). Docker Desktop and GitHub CLI are installed; `gh` is authenticated as `bduta`.
 5. When M0a is done: draft the M0b breakdown in `milestones/M0b-deployed-skeleton.md` and **get the user's approval before starting any work or creating GitHub issues**.

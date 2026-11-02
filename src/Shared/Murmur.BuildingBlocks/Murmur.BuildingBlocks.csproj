@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Generic plumbing for module implementations and the API host (ADR-0029).
+    Never referenced by SharedKernel or any .Contracts project; references no module.
+  -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Murmur.SharedKernel\Murmur.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

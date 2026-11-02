@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 using Murmur.Api.Health;
 using Murmur.Api.Modules;
+using Murmur.BuildingBlocks.Modules;
 using Murmur.Identity;
 using Murmur.Posts;
-using Murmur.SharedKernel.Modules;
 
 // Explicit list, no assembly scanning: adding a module is a visible one-line change.
 IModule[] modules = [new IdentityModule(), new PostsModule()];

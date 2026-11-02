@@ -1,4 +1,4 @@
-using Murmur.SharedKernel.Modules;
+using Murmur.BuildingBlocks.Modules;
 
 namespace Murmur.Api.Modules;
 

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Hosting;
 
-using Murmur.SharedKernel.Modules;
+using Murmur.BuildingBlocks.Modules;
 
 namespace Murmur.Identity;
 

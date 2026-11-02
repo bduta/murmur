@@ -13,7 +13,7 @@
 |---|---|---|---|---|
 | 1 | Repo bootstrap | Agent, user reviews | 2 | Done (`494bf60`, on `main`) |
 | 2 | Aspire host | Agent, user reviews | 3 | Done (`7b29525`, PR #1) |
-| 3 | Module skeleton | Agent, user reviews | 3 | In progress (`feat/m0a-module-skeleton`) |
+| 3 | Module skeleton | Agent, user reviews | 3 | PR #2 open (`feat/m0a-module-skeleton`); awaiting user merge |
 | 4 | Architecture + integration tests | Agent (tests first), user reviews | 3 | Todo |
 | 5 | Web app | Mixed — **user writes the health-status component + its test** | 4 | Todo |
 | 6 | Typed API client | Agent, user reviews | 2 | Todo |

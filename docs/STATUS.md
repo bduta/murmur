@@ -4,8 +4,8 @@
 
 **Last updated:** 2026-11-02
 **Milestone:** M0a — Local walking skeleton (approved, in progress) → [`milestones/M0a-local-skeleton.md`](milestones/M0a-local-skeleton.md)
-**Current branch:** `feat/m0a-module-skeleton` (issue 3)
-**Where we stopped:** issue 3 (module skeleton) is implemented and builds clean; next is the user's review, then commit, push and PR. Per-milestone plans live in [`milestones/`](milestones/README.md); every milestone after M0a is an outline only.
+**Current branch:** `feat/m0a-module-skeleton` (PR #2 open)
+**Where we stopped:** issue 3 (module skeleton) is in PR #2 (https://github.com/bduta/murmur/pull/2), waiting for the user to review and squash-merge. Per-milestone plans live in [`milestones/`](milestones/README.md); every milestone after M0a is an outline only.
 
 ## Done
 - Planning session complete: all decisions recorded in [`PLAN.md`](PLAN.md) and ADRs 0001–0028 in [`adr/`](adr/README.md). Treat them as settled.
@@ -26,7 +26,7 @@
 - **Issue 3 — module skeleton (in progress, 2026-11-02):** `src/Shared/Murmur.SharedKernel` (`UserId`, `Result`/`Result<T>`/`Error`, `IModule`), empty `Identity` and `Posts` modules plus `.Contracts` projects, explicit module registration in `Program.cs`, `TimeProvider.System` in DI. **ADR-0028** replaces the planned `IClock` with `TimeProvider`.
 
 ## Next steps
-1. Issue 3: user reviews → commit, push, open PR (`feat: add module skeleton and shared kernel`) → user squash-merges.
+1. Issue 3: user reviews and squash-merges PR #2. Then switch to `main`, pull, and delete the local branch.
 2. Issue 4: architecture tests + `/api/health` integration test (tests first). Include: module→module only via `.Contracts`; module implementation types `internal` except the `IModule` class; no `DateTime.UtcNow`/`DateTimeOffset.UtcNow` in modules (ADR-0028).
 3. Then M0a issues 5–7 (see the M0a milestone file), one branch + PR per issue.
 4. Before M0b: install Azure CLI + Terraform (still missing as of 2026-10-31). Docker Desktop and GitHub CLI are installed; `gh` is authenticated as `bduta`.
@@ -34,7 +34,7 @@
 
 ## Current milestone at a glance
 M0a issue states (the details and the source of truth are in [`milestones/M0a-local-skeleton.md`](milestones/M0a-local-skeleton.md)):
-1 Done · 2 Done · **3 In progress** · 4 Todo · 5 Todo · 6 Todo · 7 Todo
+1 Done · 2 Done · **3 PR #2 awaiting merge** · 4 Todo · 5 Todo · 6 Todo · 7 Todo
 
 ## Working preferences
 - User prefers questions **one at a time**, each with a recommendation.

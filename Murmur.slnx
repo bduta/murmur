@@ -1,2 +1,7 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Murmur.Api/Murmur.Api.csproj" />
+    <Project Path="src/Murmur.AppHost/Murmur.AppHost.csproj" />
+    <Project Path="src/Murmur.ServiceDefaults/Murmur.ServiceDefaults.csproj" />
+  </Folder>
 </Solution>

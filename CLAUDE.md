@@ -2,7 +2,9 @@
 
 Social platform (posts, follows, likes, comments, notifications, DMs). Solo developer + AI agents. Portfolio-grade, built with production habits.
 
-**Start of every session:** read `docs/STATUS.md` (where we left off, next steps) and update it before ending.
+**Start of every session:** read `docs/STATUS.md` (where we left off, next steps) and the current milestone file in `docs/milestones/`. Update both before ending.
+
+**Milestone breakdowns:** draft them in the milestone's file in `docs/milestones/` and **wait for the user's explicit approval** before starting work or creating GitHub issues. Changes to an approved breakdown need approval too.
 
 **Read first:** `docs/PLAN.md` (architecture, stack, roadmap) and the ADR relevant to your change in `docs/adr/`. Do not contradict an accepted ADR — if a change requires it, stop and propose a new ADR instead.
 

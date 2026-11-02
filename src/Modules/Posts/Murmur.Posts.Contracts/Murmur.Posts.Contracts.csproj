@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Public surface of the Posts module: interfaces, DTOs and integration events other modules may use. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Murmur.SharedKernel\Murmur.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

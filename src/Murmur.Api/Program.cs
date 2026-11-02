@@ -1,6 +1,13 @@
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 using Murmur.Api.Health;
+using Murmur.Api.Modules;
+using Murmur.Identity;
+using Murmur.Posts;
+using Murmur.SharedKernel.Modules;
+
+// Explicit list, no assembly scanning: adding a module is a visible one-line change.
+IModule[] modules = [new IdentityModule(), new PostsModule()];
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +15,11 @@ builder.AddServiceDefaults();
 
 // Registers NpgsqlDataSource plus a Postgres health check, tracing and metrics.
 builder.AddNpgsqlDataSource("murmur");
+
+// The single source of "now" (ADR-0028). Tests swap in FakeTimeProvider.
+builder.Services.AddSingleton(TimeProvider.System);
+
+builder.AddModules(modules);
 
 var app = builder.Build();
 
@@ -18,5 +30,7 @@ app.MapHealthChecks("/api/health", new HealthCheckOptions
 {
     ResponseWriter = HealthResponseWriter.WriteAsync,
 });
+
+app.MapModules(modules);
 
 app.Run();

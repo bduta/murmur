@@ -1,6 +1,6 @@
 # 0020. Module structure, vertical slices, outbox
 
-- **Status:** Accepted
+- **Status:** Accepted (SharedKernel clock amended by [ADR-0028](0028-timeprovider-instead-of-iclock.md))
 - **Date:** 2026-10-29
 
 ## Context
@@ -16,7 +16,7 @@ src/
   Modules/<Name>/
     Murmur.<Name>/             internal implementation
     Murmur.<Name>.Contracts/   public interfaces, DTOs, integration events
-  Shared/Murmur.SharedKernel/  tiny: Result, UserId, IClock, event base types
+  Shared/Murmur.SharedKernel/  tiny: Result, UserId, IModule, event base types (time: TimeProvider, ADR-0028)
 web/                           React SPA
 infra/                         Terraform
 tests/

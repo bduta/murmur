@@ -123,6 +123,8 @@ Naming: `rg-murmur-{env}`, `murmur{env}st`, `murmuracr`, `ca-murmur-{env}`, `psq
 
 Each milestone: ~15–20 h, ends **deployed**, includes backend + frontend + tests + infra, and adds **one agentic asset**.
 
+Per-milestone detail (scope, acceptance criteria, issue breakdown and state) lives in [`milestones/`](milestones/README.md). A breakdown is drafted when its milestone is about to start, and work begins only after the user approves it.
+
 | # | Milestone | Ships | Main learning | Agentic asset |
 |---|---|---|---|---|
 | **M0a** | Local walking skeleton | React app calls `/api/health` | Aspire, module layout, arch tests, Vite + TS | `CLAUDE.md`, ADRs in repo |

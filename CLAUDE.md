@@ -24,6 +24,7 @@ Social platform (posts, follows, likes, comments, notifications, DMs). Solo deve
 ## Architecture rules (enforced by architecture tests)
 - Modular monolith. Modules live in `src/Modules/<Name>/` as `Murmur.<Name>` (internal) + `Murmur.<Name>.Contracts` (public).
 - A module may reference another module **only** through its `.Contracts` project. Never another module's `DbContext`, entities or internals.
+- Shared code: `Shared/Murmur.SharedKernel` (base .NET only, no module-owned rules) and `Shared/Murmur.BuildingBlocks` (generic plumbing, never referenced by contracts). Cross-module reads, event shape, no cycles: **ADR-0029**.
 - One `DbContext`, Postgres schema and migration set per module.
 - Cross-module side effects go through integration events via the **transactional outbox**. Event handlers must be idempotent.
 - Reference users only by `UserId` (GUID from SharedKernel) — never Identity's internal IDs or email.

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Internal implementation of the Posts module. Only PostsModule is public. -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Murmur.SharedKernel\Murmur.SharedKernel.csproj" />
+    <ProjectReference Include="..\Murmur.Posts.Contracts\Murmur.Posts.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Murmur.BuildingBlocks\Murmur.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

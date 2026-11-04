@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Kept tiny on purpose: no runtime dependencies beyond the .NET base framework (ADR-0029). -->
+
+</Project>

@@ -4,4 +4,17 @@
     <Project Path="src/Murmur.AppHost/Murmur.AppHost.csproj" />
     <Project Path="src/Murmur.ServiceDefaults/Murmur.ServiceDefaults.csproj" />
   </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Identity/">
+    <Project Path="src/Modules/Identity/Murmur.Identity.Contracts/Murmur.Identity.Contracts.csproj" />
+    <Project Path="src/Modules/Identity/Murmur.Identity/Murmur.Identity.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Posts/">
+    <Project Path="src/Modules/Posts/Murmur.Posts.Contracts/Murmur.Posts.Contracts.csproj" />
+    <Project Path="src/Modules/Posts/Murmur.Posts/Murmur.Posts.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/Murmur.BuildingBlocks/Murmur.BuildingBlocks.csproj" />
+    <Project Path="src/Shared/Murmur.SharedKernel/Murmur.SharedKernel.csproj" />
+  </Folder>
 </Solution>

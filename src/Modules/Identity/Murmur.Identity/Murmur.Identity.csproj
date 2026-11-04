@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Internal implementation of the Identity module. Only IdentityModule is public. -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Murmur.SharedKernel\Murmur.SharedKernel.csproj" />
+    <ProjectReference Include="..\Murmur.Identity.Contracts\Murmur.Identity.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Murmur.BuildingBlocks\Murmur.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

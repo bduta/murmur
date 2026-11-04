@@ -21,3 +21,9 @@ ADR-0020 lists an `IClock` abstraction in SharedKernel so that code reading "now
 ## Alternatives considered
 - Custom `IClock` (ADR-0020 as written): duplicates a BCL type, and framework components ignore it, so tests could end up running against two different clocks.
 - `DateTime.UtcNow` directly: untestable time-dependent logic.
+
+## Amendment (2026-11-04)
+Decided while planning the architecture tests (M0a issue 4):
+- **Scope:** the ban covers every assembly under `src/` except `Murmur.ServiceDefaults` (Aspire template code) and `Murmur.AppHost` (dev-only orchestration). That is SharedKernel, BuildingBlocks, every module implementation and `.Contracts`, and `Murmur.Api`, not only "module code". The outbox (BuildingBlocks), the integration-event base type (SharedKernel) and host-level code all stamp times, and a second clock there would split time in tests exactly as described above.
+- **Banned members:** `DateTime.Now`, `DateTime.UtcNow`, `DateTime.Today`, `DateTimeOffset.Now`, `DateTimeOffset.UtcNow`.
+- **Enforced by** `tests/Murmur.ArchitectureTests` (ADR-0029 §7).

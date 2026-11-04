@@ -13,8 +13,8 @@
 |---|---|---|---|---|
 | 1 | Repo bootstrap | Agent, user reviews | 2 | Done (`494bf60`, on `main`) |
 | 2 | Aspire host | Agent, user reviews | 3 | Done (`7b29525`, PR #1) |
-| 3 | Module skeleton | Agent, user reviews | 3 | PR #2 open (`feat/m0a-module-skeleton`); awaiting user merge |
-| 4 | Architecture + integration tests | Agent (tests first), user reviews | 3 | Todo |
+| 3 | Module skeleton | Agent, user reviews | 3 | Done (`58575ad`, PR #2) |
+| 4 | Architecture + integration tests | Agent (tests first), user reviews | 3 | In progress: PR A (architecture tests) open, PR B (integration tests) todo |
 | 5 | Web app | Mixed — **user writes the health-status component + its test** | 4 | Todo |
 | 6 | Typed API client | Agent, user reviews | 2 | Todo |
 | 7 | Wrap-up | Together | 1 | Todo |
@@ -43,6 +43,13 @@
   7. no `DateTime.UtcNow`/`DateTimeOffset.UtcNow` in modules (ADR-0028).
 - `tests/Murmur.Api.IntegrationTests`: `/api/health` against real Postgres via Testcontainers. Tests written first.
 - **Notes:** may run slightly over the 3 h estimate because of the larger rule set.
+  - Design review (grilling, 2026-11-04) decisions:
+    - Rules 1–5 are checked only on the `.csproj` files (pure rule functions plus permanent in-memory "must fail" tests); rules 6–7 only with ArchUnitNET. Rules 6–7 were broken by hand once and the failures recorded in PR A.
+    - The clock ban covers all of `src/` except ServiceDefaults and AppHost, and also bans `Now`/`Today` (ADR-0028 amendment).
+    - Modules are found by scanning `src/Modules/*/`; misplaced module projects and references added in `Directory.Build.*`/`Directory.Packages.props` fail a test.
+    - PR B adds a test that the modules registered in `Program.cs` match the module projects on disk (needs a one-line DI seam), and pins "database down → 503 Unhealthy" as intended.
+    - Shipped as two PRs under this one issue: A = architecture tests (`feat/m0a-arch-tests`), B = integration tests (`feat/m0a-integration-tests`).
+  - xunit.v3 4.x runs on Microsoft.Testing.Platform: `global.json` opts `dotnet test` into it, and `Microsoft.NET.Test.Sdk`/`xunit.runner.visualstudio` aren't needed.
 
 ### Issue 5 — Web app
 - Vite + React + TypeScript, Tailwind + shadcn/ui, React Router, TanStack Query, ESLint/Prettier, Vitest; Vite dev server added to Aspire.

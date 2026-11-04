@@ -12,6 +12,8 @@
   - No secrets in GitHub; Azure auth via OIDC federation. Required status checks added to `main` protection.
 - **Prerequisites:** Azure subscription, Azure CLI, Terraform installed.
 - **Out of scope:** prod environment (M2), custom domain.
+- **Carried over from M0a:**
+  - Decide the liveness/readiness split when configuring Container Apps probes. Today `/api/health` includes the Postgres check and returns 503 when the database is down (pinned by an M0a integration test), so as a readiness probe a database outage takes every replica out of rotation. `/alive` exists but ServiceDefaults maps it in Development only.
 
 ## Breakdown
 - **Status:** Outline — not broken down yet. Draft a breakdown when M0a is done; it needs the user's approval before any work.

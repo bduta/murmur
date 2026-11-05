@@ -14,7 +14,7 @@
 | 1 | Repo bootstrap | Agent, user reviews | 2 | Done (`494bf60`, on `main`) |
 | 2 | Aspire host | Agent, user reviews | 3 | Done (`7b29525`, PR #1) |
 | 3 | Module skeleton | Agent, user reviews | 3 | Done (`58575ad`, PR #2) |
-| 4 | Architecture + integration tests | Agent (tests first), user reviews | 3 | In progress: PR A (architecture tests) open, PR B (integration tests) todo |
+| 4 | Architecture + integration tests | Agent (tests first), user reviews | 3 | In progress: PR A merged (`69c53bf`, PR #3), PR B (integration tests) in review |
 | 5 | Web app | Mixed — **user writes the health-status component + its test** | 4 | Todo |
 | 6 | Typed API client | Agent, user reviews | 2 | Todo |
 | 7 | Wrap-up | Together | 1 | Todo |
@@ -50,6 +50,7 @@
     - PR B adds a test that the modules registered in `Program.cs` match the module projects on disk (needs a one-line DI seam), and pins "database down → 503 Unhealthy" as intended.
     - Shipped as two PRs under this one issue: A = architecture tests (`feat/m0a-arch-tests`), B = integration tests (`feat/m0a-integration-tests`).
   - xunit.v3 4.x runs on Microsoft.Testing.Platform: `global.json` opts `dotnet test` into it, and `Microsoft.NET.Test.Sdk`/`xunit.runner.visualstudio` aren't needed.
+  - PR B: one `postgres:18.3` Testcontainer per run (xUnit v3 assembly fixture). "Database down" points the app at a closed port (`127.0.0.1:1`, `Timeout=1`) instead of stopping the shared container. .NET 10 already makes `Program` public, so no `public partial class Program` is needed. The DI seam registers the module array as `IReadOnlyList<IModule>`.
 
 ### Issue 5 — Web app
 - Vite + React + TypeScript, Tailwind + shadcn/ui, React Router, TanStack Query, ESLint/Prettier, Vitest; Vite dev server added to Aspire.

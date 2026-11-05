@@ -2,10 +2,10 @@
 
 > Update this file at the end of every working session. A new agent session starts here.
 
-**Last updated:** 2026-11-04
+**Last updated:** 2026-11-05
 **Milestone:** M0a — Local walking skeleton (approved, in progress) → [`milestones/M0a-local-skeleton.md`](milestones/M0a-local-skeleton.md)
-**Current branch:** `feat/m0a-arch-tests` (issue 4, PR A)
-**Where we stopped:** issue 4 was planned in a design review (2026-11-04) and split into two PRs. PR A (architecture tests) is written and green on `feat/m0a-arch-tests`, waiting for the user's OK to commit, push and open the PR. PR B (integration tests) is next. Per-milestone plans live in [`milestones/`](milestones/README.md); every milestone after M0a is an outline only.
+**Current branch:** `feat/m0a-integration-tests` (issue 4, PR B)
+**Where we stopped:** issue 4 shipped as two PRs. PR A (architecture tests) was squash-merged as `69c53bf` (PR #3, 2026-11-05). PR B (integration tests) is written and green on `feat/m0a-integration-tests` (34/34 tests pass), waiting for the user's OK to commit, push and open the PR. Per-milestone plans live in [`milestones/`](milestones/README.md); every milestone after M0a is an outline only.
 
 ## Done
 - Planning session complete: all decisions recorded in [`PLAN.md`](PLAN.md) and ADRs 0001–0029 in [`adr/`](adr/README.md). Treat them as settled.
@@ -31,20 +31,15 @@
 - **Module-boundary design review (grilling session, 2026-11-02):** 12 decisions recorded in **ADR-0029** (shared-code admission rules, cross-module reads, event shape, no cycles, visibility, enforcement). The user approved the resulting changes to issues 3 and 4 in the M0a breakdown.
 
 ## Next steps
-1. Issue 4, PR A (`feat/m0a-arch-tests`): get the user's OK, then commit, push (from PowerShell) and open the PR. The PR body must say why each new package is added and include the recorded rule 6–7 failures. Then wait for review and squash-merge.
-2. Issue 4, PR B (`feat/m0a-integration-tests`, branch from `main` after A merges): `tests/Murmur.Api.IntegrationTests` with Testcontainers `postgres:18.3` (the image Aspire 13.6.4 uses) shared through an xUnit v3 assembly fixture. Tests first:
-   - `/api/health` returns 200, `Healthy`, a version and `checks.PostgreSql: Healthy`;
-   - with the database unreachable, it returns 503 `Unhealthy` (intended, see the M0b note);
-   - the unhealthy response contains no exception text;
-   - the modules registered in `Program.cs` match the module projects on disk (one-line DI seam: register the `IModule[]` array).
-   New packages: `Testcontainers.PostgreSql` (MIT), `Microsoft.AspNetCore.Mvc.Testing` (MIT). If .NET 10 doesn't make `Program` public, add `public partial class Program;`.
-3. Then M0a issues 5–7 (see the M0a milestone file). Each issue gets its own branch and PR unless it's too big for one; issue 4 shipped as two PRs.
-4. Before M0b: install Azure CLI + Terraform (still missing as of 2026-10-31). Docker Desktop and GitHub CLI are installed; `gh` is authenticated as `bduta`.
-5. When M0a is done: draft the M0b breakdown in `milestones/M0b-deployed-skeleton.md` and **get the user's approval before starting any work or creating GitHub issues**.
+1. Issue 4, PR B: with the user's OK, commit, push (from PowerShell) and open the PR. The PR body must say why each new package is added (`Testcontainers.PostgreSql`, MIT: real Postgres per ADR-0021; `Microsoft.AspNetCore.Mvc.Testing`, MIT: in-memory `WebApplicationFactory`). It should also mention the sabotage check: leaking the exception text and adding an unregistered `src/Modules/Fake` folder each failed the matching test. After the squash-merge: `git switch main`, `git pull --ff-only`, `git branch -D feat/m0a-integration-tests`, and mark issue 4 Done in the milestone file.
+   - Integration tests need Docker running. The health tests passed on the first run because issue 2 had already built that behaviour; only the module-registration test was red before the DI seam was added.
+2. Then M0a issues 5–7 (see the M0a milestone file). Each issue gets its own branch and PR unless it's too big for one; issue 4 shipped as two PRs.
+3. Before M0b: install Azure CLI + Terraform (still missing as of 2026-10-31). Docker Desktop and GitHub CLI are installed; `gh` is authenticated as `bduta`.
+4. When M0a is done: draft the M0b breakdown in `milestones/M0b-deployed-skeleton.md` and **get the user's approval before starting any work or creating GitHub issues**.
 
 ## Current milestone at a glance
 M0a issue states (the details and the source of truth are in [`milestones/M0a-local-skeleton.md`](milestones/M0a-local-skeleton.md)):
-1 Done · 2 Done · 3 Done · **4 In progress (PR A ready, PR B todo)** · 5 Todo · 6 Todo · 7 Todo
+1 Done · 2 Done · 3 Done · **4 In progress (PR A merged as #3, PR B ready for PR)** · 5 Todo · 6 Todo · 7 Todo
 
 ## Working preferences
 - User prefers questions **one at a time**, each with a recommendation. This also applies inside the grilling skill, which otherwise batches questions.

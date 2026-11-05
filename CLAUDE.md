@@ -17,7 +17,7 @@ Social platform (posts, follows, likes, comments, notifications, DMs). Solo deve
 ## Commands
 <!-- Fill in during M0a once the solution exists. -->
 - Run everything locally: `dotnet run --project src/Murmur.AppHost`
-- Backend tests: `dotnet test`
+- Backend tests: `dotnet test` (Microsoft.Testing.Platform, opted in via `global.json`; one project: `dotnet test --project tests/<Project>`)
 - Frontend: `cd web && npm run dev | npm test | npm run lint`
 - Regenerate API client: _TBD in M0a_
 

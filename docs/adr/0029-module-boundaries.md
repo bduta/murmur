@@ -70,7 +70,9 @@ In a module implementation, only the `IModule` class is `public`. The one exempt
 - implementations are referenced only by `Murmur.Api` and test projects;
 - there are no cycles between modules;
 - the visibility rule in §6 holds;
-- modules don't call `DateTime.UtcNow`/`DateTimeOffset.UtcNow` (ADR-0028).
+- code doesn't read the system clock directly (scope and banned members: ADR-0028, amended 2026-11-04).
+
+Rules about references between projects are checked on the `.csproj` files, which see declared-but-unused references; the visibility and clock rules are checked with ArchUnitNET on compiled code. Each rule has one check.
 
 Integration tests live in `tests/Murmur.Api.IntegrationTests` (HTTP only, no `InternalsVisibleTo`). Module unit test projects (`tests/Modules/Murmur.<Name>.UnitTests`) are created on demand, and only they may receive `InternalsVisibleTo`.
 

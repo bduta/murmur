@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Enforces ADR-0029 §7 (and the clock ban, ADR-0028).
+    Rules 1–5 read the .csproj files; rules 6–7 inspect compiled assemblies with ArchUnitNET.
+    References Murmur.Api so every module assembly is copied to the output folder and can be loaded.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="TngTech.ArchUnitNET.xUnitV3" />
+    <PackageReference Include="Shouldly" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Murmur.Api\Murmur.Api.csproj" />
+  </ItemGroup>
+
+</Project>

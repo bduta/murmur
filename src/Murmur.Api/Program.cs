@@ -21,6 +21,9 @@ builder.Services.AddSingleton(TimeProvider.System);
 
 builder.AddModules(modules);
 
+// Lets tests check that every module project on disk is registered above.
+builder.Services.AddSingleton<IReadOnlyList<IModule>>(modules);
+
 var app = builder.Build();
 
 app.MapDefaultEndpoints();

@@ -18,6 +18,7 @@
     <Project Path="src/Shared/Murmur.SharedKernel/Murmur.SharedKernel.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Murmur.Api.IntegrationTests/Murmur.Api.IntegrationTests.csproj" />
     <Project Path="tests/Murmur.ArchitectureTests/Murmur.ArchitectureTests.csproj" />
   </Folder>
 </Solution>
